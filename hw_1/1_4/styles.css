@@ -1,0 +1,55 @@
+body {
+    font-size: 25px;
+}
+
+a {
+    padding: 10px 20px;
+    margin-top: 20px;
+    display: inline-block;
+    font-size: 20px;
+    border: 2px solid teal;
+    border-radius: 16px;
+    color: teal;
+    transition: all 0.3s ease-in-out;
+    text-decoration: none;
+}
+
+a:hover,
+a:focus {
+    background-color: teal;
+    color: white;
+}
+
+
+ul {
+
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+
+
+}
+
+ul:not(:nth-last-of-type(1)) {
+    margin-bottom: 20px;
+}
+
+li {
+    margin-right: 10px;
+    padding: 10px;
+    display: inline-block;
+    text-align: center;
+    background-color: rgba(100, 96, 95, 0.24);
+}
+
+li:last-child {
+    margin-right: 0;
+}
+
+span {
+    font-size: 30px;
+}
+
+.accent-color {
+    color: #b30808;
+}
