@@ -6,6 +6,8 @@
     /*--link-color: #EC4899;*/
     /*--link-hover-color: #FBCFE8;*/
     /*--accent-color: #FACC15;*/
+    --card-list-gap: 20px;
+    --card-list-item: 1;
     --border-radius: 16px;
     --transition: all 0.3s ease-in-out;
     --block-shadow: 0 1px 1px rgba(0, 0, 0, .12), 0 4px 4px rgba(0, 0, 0, .06), 1px 4px 6px rgba(0, 0, 0, .16);
@@ -68,11 +70,13 @@ img {
     display: flex;
     align-items: stretch;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: var(--card-list-gap);
 }
 
+
+
 .card-item {
-    flex-basis: calc((100% - (3 - 1) * 20px) / 3);
+    flex-basis: calc((100% - (var(--card-list-item) - 1) * var(--card-list-gap)) / var(--card-list-item));
     border-radius: var(--border-radius);
     overflow: hidden;
     box-shadow: var(--block-shadow);
