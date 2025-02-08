@@ -3,6 +3,10 @@
     padding: 0;
 }
 
+ul,ol{
+    list-style: none;
+}
+
 
 body {
     font-size: 20px;
@@ -37,7 +41,7 @@ h1, h2 {
 
 .container{
     margin: 0 auto;
-    padding: 80px;
+    padding: 40px 80px;
     width: 100%;
     max-width: 1440px;
 
@@ -47,6 +51,28 @@ h1, h2 {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    counter-reset: item;
+}
+
+.card-item{
+
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.card-item::before{
+    content: counter(item) ". ";
+    counter-increment: item;
+    min-width: 25px;
+}
+
+.card-item p::first-letter{
+    text-transform: uppercase;
+}
+
+.card-item .btn{
+    margin-top: 0;
+    min-width: fit-content;
 }
 
 
