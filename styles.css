@@ -7,7 +7,7 @@
     /*--link-hover-color: #FBCFE8;*/
     /*--accent-color: #FACC15;*/
     --card-list-gap: 20px;
-    --card-list-item: 3;
+    --card-list-item: 4;
     --border-radius: 16px;
     --transition: all 0.3s ease-in-out;
     --block-shadow: 0 1px 1px rgba(0, 0, 0, .12), 0 4px 4px rgba(0, 0, 0, .06), 1px 4px 6px rgba(0, 0, 0, .16);
