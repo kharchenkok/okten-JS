@@ -36,14 +36,12 @@ function deepCopy(obj) {
     let stringifiedObj = JSON.stringify(obj, replacer);
 
     let parsedObj = JSON.parse(stringifiedObj, reviver);
-
     undefinedValues.forEach(item => {
         if (!(item.key in parsedObj)) {
             parsedObj[item.key] = item.value;
         }
     });
 
-    console.log('functions',functions)
     return parsedObj;
 }
 
@@ -56,11 +54,6 @@ const user = {
     status: null,
     isActive: true,
     occupation: undefined,
-    hobbies: [
-        { name: null, type: 'book' },
-        { name: 'painting', type: 'art' },
-        { name: 'cooking', type: 'food' }
-    ],
     address: undefined,
     greeting: function () {
         return console.log(`Hello, ${this.name}`);
