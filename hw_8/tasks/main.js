@@ -107,3 +107,6 @@ console.log('============Task 2=============');
 console.log('coursesAndDurationArray:', coursesAndDurationArray);
 console.log('coursesAndDurationArrayWithID:', coursesAndDurationArrayWithID);
 
+
+
+
