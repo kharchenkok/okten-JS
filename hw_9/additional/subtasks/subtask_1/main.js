@@ -120,3 +120,5 @@ setIdenticalHeight(modulesList);
 
 console.log('coursesArray',coursesArray);
 console.log('coursesList', coursesList);
+
+
