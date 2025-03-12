@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let sessionList = JSON.parse(localStorage.getItem('sessionList')) || [];
     if(sessionList.length === 0) {
         sessionListBlock.innerHTML = 'No sessions yet';
+        console.log('No sessions')
     }else {
         for(const session of sessionList) {
             let item = document.createElement('li');
@@ -10,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
             sessionListBlock.appendChild(item);
 
         }
+        console.log('Sessions loaded', sessionList)
     }
 });
 

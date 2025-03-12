@@ -3,6 +3,7 @@ const kgInput = document.getElementById('kilogram');
 kgInput.addEventListener('input', function () {
     const poundOutput = document.getElementById('pound');
     const kgValue = parseFloat(this.value);
+    console.log('kg value', kgValue)
     if (kgValue <= 0) {
         poundOutput.textContent = 'Введіть додатнє значення';
         return;

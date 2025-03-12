@@ -14,3 +14,5 @@ if(counter === null){
 localStorage.setItem('counter', counter);
 
 counterBlock.textContent = counter;
+
+console.log('counter', counter);

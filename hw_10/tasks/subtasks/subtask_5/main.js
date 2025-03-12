@@ -4,5 +4,6 @@ document.addEventListener('DOMContentLoaded', function() {
         date: new Date().toLocaleDateString(),
         time: new Date().toLocaleTimeString(),
     });
+    console.log('sessionList', sessionList);
     localStorage.setItem('sessionList', JSON.stringify(sessionList));
 });
