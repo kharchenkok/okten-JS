@@ -1,4 +1,4 @@
-
+import { createMessage } from '../../createMessage.js';
 const userForm = document.forms.userForm;
 
  function capitalizeFirstLetter(str) {
@@ -15,17 +15,6 @@ const userForm = document.forms.userForm;
         userBlock.appendChild(p);
     }
     return userBlock;
-}
- function createMessage(input, text) {
-    let errorMessage = input.parentNode.querySelector(".error-message");
-
-    if (errorMessage) {
-        errorMessage.remove();
-    }
-    errorMessage = document.createElement("p");
-    errorMessage.classList.add("error-message");
-    errorMessage.textContent = text;
-    input.parentNode.appendChild(errorMessage);
 }
 
  function validateForm(form) {

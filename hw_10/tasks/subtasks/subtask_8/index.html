@@ -7,6 +7,7 @@
     <style>
         .container{
             display: flex;
+            flex-direction: column;
             gap: 100px;
             
         }
@@ -39,14 +40,9 @@
             color: #cc2b2b;
         }
         
-        .user-block{
-           display: flex;
-            flex-direction: column;
-            gap: 10px;
-            justify-content: center;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 12px;
+
+        table, th, td {
+            border:1px solid black;
         }
 
     </style>
@@ -56,18 +52,18 @@
 <div class="container">
     <form id="userForm">
         <label>
-            <input type="number" id="line" name="line"  placeholder="Введіть кількість рядків">
+            <input type="number" id="line" name="line" min="1" max="20" placeholder="Введіть кількість рядків (від 1 до 20)">
         </label>
 
         <label>
-            <input type="number" id="cell" name="cell"  placeholder="Введіть кількість комірок">
+            <input type="number" id="cell" name="cell" min="1" max="20"  placeholder="Введіть кількість комірок (від 1 до 20)">
         </label>
 
         <label>
             <input type="text" id="content" name="content" placeholder="Введіть вміст комірок">
         </label>
 
-        <button class="btn" type="submit" id="submit">Submit</button>
+        <button class="btn" type="submit" id="submit">Створити таблицю</button>
     </form>
 </div>
 

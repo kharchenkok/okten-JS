@@ -1,33 +1,62 @@
-const container = document.getElementsByClassName('container')[0];
+const gallery = document.getElementById('gallery');
+const prevBtn = document.getElementById('prev');
+const nextBtn = document.getElementById('next');
 
-const loremText ='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
+const galleryItems = [];
 
-
-for (let i = 0; i < 3; i++) {
-    const randomCount = Math.floor(Math.random() * 5) + 1;
-    const randomTextArr=[];
-    for (let j = 0; j < randomCount; j++) {
-        randomTextArr.push(loremText);
-    }
-    const randomText = randomTextArr.join(' ');
-
-    const textMarkup = `<p class="text-content">${randomText}</p>`;
-    container.insertAdjacentHTML('beforeend', textMarkup);
+for (let i = 0; i < 100; i++) {
+    galleryItems.push({
+        id: i+1,
+        src: `https://picsum.photos/id/${i+1}/300/200`,
+        title: `Image ${i+1}`,
+        width: 300,
+        height: 200
+    });
 }
 
-function setIdenticalHeight(elements) {
-    let maxHeight = elements[0].clientHeight;
-    for (const element of elements) {
-        if (element.clientHeight > maxHeight) {
-            maxHeight = element.clientHeight;
-        }
-    }
-    for (const element of elements) {
-        element.style.height = `${maxHeight}px`;
-    }
+
+const itemsPerPage = 10;
+let currentPage = 1;
+
+
+function renderGalleryItems() {
+    const start = (currentPage - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    const items = galleryItems.slice(start, end);
+
+    console.log('current page', currentPage);
+    console.log('gallery items', items);
+
+    gallery.innerHTML = '';
+
+    items.forEach(item => {
+        const liMarkup=`
+        <li>
+             <img src="${item.src}" alt="${item.title}" width="${item.width}" height="${item.height}">
+             <h3>${item.title}</h3>
+        </li>
+        `
+        gallery.insertAdjacentHTML('beforeend', liMarkup);
+    });
+
+    currentPage === 1 ? prevBtn.disabled = true : prevBtn.disabled = false;
+    currentPage >= Math.floor(galleryItems.length / itemsPerPage) ? nextBtn.disabled = true : nextBtn.disabled = false;
+
 }
 
-const paragraphs = container.getElementsByClassName('text-content');
-setIdenticalHeight(paragraphs);
+prevBtn.addEventListener('click',()=>{
+   if(currentPage>0){
+       currentPage-=1;
+       renderGalleryItems();
+   }
+})
 
-console.log('container', container);
+nextBtn.addEventListener('click', () => {
+    if (currentPage < Math.floor(galleryItems.length / itemsPerPage)) {
+        currentPage += 1;
+        renderGalleryItems();
+    }
+
+})
+
+renderGalleryItems();

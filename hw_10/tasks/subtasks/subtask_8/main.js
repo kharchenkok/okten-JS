@@ -1,32 +1,33 @@
-
+import { createMessage } from '../../createMessage.js';
 const userForm = document.forms.userForm;
 
- function capitalizeFirstLetter(str) {
-    if (str.length === 0) return str;
-    return str.charAt(0).toUpperCase() + str.slice(1);
+
+
+ function createTable(inputs) {
+     let lineQuantity, cellQuantity, cellContent;
+
+     for (const input of inputs) {
+         if (input.name === 'line') lineQuantity = input.value;
+         else if (input.name === 'cell') cellQuantity = input.value;
+         else if (input.name === 'content') cellContent = input.value;
+     }
+
+     const table = document.createElement('table');
+     table.classList.add('table');
+     table.setAttribute('id', 'table');
+     for (let i = 0; i < lineQuantity; i++) {
+            const tr = document.createElement('tr');
+            for (let j = 0; j < cellQuantity; j++) {
+                const td = document.createElement('td');
+                td.textContent = cellContent;
+                tr.appendChild(td);
+            }
+         table.appendChild(tr);
+     }
+
+    return table;
 }
 
- function createUserBlock(inputs) {
-    const userBlock = document.createElement('div');
-    userBlock.classList.add('user-block');
-    for (const input of inputs) {
-        const p = document.createElement('p');
-        p.innerText = `${capitalizeFirstLetter(input.name)} : ${input.value}`;
-        userBlock.appendChild(p);
-    }
-    return userBlock;
-}
- function createMessage(input, text) {
-    let errorMessage = input.parentNode.querySelector(".error-message");
-
-    if (errorMessage) {
-        errorMessage.remove();
-    }
-    errorMessage = document.createElement("p");
-    errorMessage.classList.add("error-message");
-    errorMessage.textContent = text;
-    input.parentNode.appendChild(errorMessage);
-}
 
  function validateForm(form) {
     let isValid = true;
@@ -40,16 +41,13 @@ const userForm = document.forms.userForm;
         }
 
         if (!input.value.trim()) {
-            createMessage(input, `* Field ${capitalizeFirstLetter(input.name)} is required`);
+            createMessage(input, `* Поле ${input.name} є обов'язковим`);
             isValid = false;
-        } else if (input.name === "age") {
-            const age = Number(input.value);
+        } else if (input.type === "number") {
+            const numb = Number(input.value);
 
-            if (age < 0) {
-                createMessage(input, `* Enter a valid age`);
-                isValid = false;
-            } else if (age < 18) {
-                createMessage(input, `* Your age must be more than 18`);
+            if (numb <= 0) {
+                createMessage(input, `* Введіть додатнє число`);
                 isValid = false;
             }
         }
@@ -68,12 +66,12 @@ userForm.addEventListener('submit', function (event) {
     const validateFormData = validateForm(inputs);
     if (!validateFormData) return;
 
-    let userBlock = document.querySelector('.user-block');
-    if (userBlock) {
-        userBlock.remove();
+    let table = document.getElementById('table');
+    if (table) {
+        table.remove();
     }
 
-    this.parentNode.appendChild(createUserBlock(inputs));
+    this.parentNode.appendChild(createTable(inputs));
 
     this.reset();
 });
