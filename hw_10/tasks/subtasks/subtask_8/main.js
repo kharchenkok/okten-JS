@@ -61,17 +61,17 @@ const userForm = document.forms.userForm;
 
 userForm.addEventListener('submit', function (event) {
     event.preventDefault();
-
+    let table = document.getElementById('table');
+    if (table) {
+        table.remove();
+    }
     const formData = new FormData(this);
     const inputs = [...formData.keys()].map(name => this.elements[name]);
 
     const validateFormData = validateForm(inputs);
     if (!validateFormData) return;
 
-    let table = document.getElementById('table');
-    if (table) {
-        table.remove();
-    }
+
 
     this.parentNode.appendChild(createTable(inputs));
 
