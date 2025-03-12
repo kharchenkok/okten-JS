@@ -10,9 +10,11 @@ const userForm = document.forms.userForm;
     const userBlock = document.createElement('div');
     userBlock.classList.add('user-block');
     for (const input of inputs) {
+        console.log('name: ' + input.name,'value: ' + input.value);
         const p = document.createElement('p');
         p.innerText = `${capitalizeFirstLetter(input.name)} : ${input.value}`;
         userBlock.appendChild(p);
+
     }
     return userBlock;
 }
@@ -52,16 +54,15 @@ const userForm = document.forms.userForm;
 userForm.addEventListener('submit', function (event) {
     event.preventDefault();
 
-    const formData = new FormData(this);
-    const inputs = [...formData.keys()].map(name => this.elements[name]);
-    console.log('inputs', inputs);
-    const validateFormData = validateForm(inputs);
-    if (!validateFormData) return;
-
     let userBlock = document.querySelector('.user-block');
     if (userBlock) {
         userBlock.remove();
     }
+    const formData = new FormData(this);
+    const inputs = [...formData.keys()].map(name => this.elements[name]);
+
+    const validateFormData = validateForm(inputs);
+    if (!validateFormData) return;
 
     this.parentNode.appendChild(createUserBlock(inputs));
 

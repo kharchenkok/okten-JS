@@ -24,6 +24,7 @@ const userForm = document.forms.userForm;
             }
          table.appendChild(tr);
      }
+     console.log('lineQuantity:', lineQuantity, 'cellQuantity:',cellQuantity, 'cellContent:',cellContent);
 
     return table;
 }
@@ -63,7 +64,7 @@ userForm.addEventListener('submit', function (event) {
 
     const formData = new FormData(this);
     const inputs = [...formData.keys()].map(name => this.elements[name]);
-    console.log('inputs', inputs);
+
     const validateFormData = validateForm(inputs);
     if (!validateFormData) return;
 
